@@ -20,8 +20,8 @@ class RecipeDetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_recipe_detail, container, false)
     }
 
-    fun setRecipe(id: Int) {
-        this.recipeId = id;
+    fun setRecipe(id: Long) {
+        this.recipeId = id.toInt();
     }
 
     override fun onStart() {
