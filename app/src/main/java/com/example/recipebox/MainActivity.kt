@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity(), Listener {
     }
 
     override fun itemClicked(id: Long) {
-        val fragmentContainer: View = findViewById(R.id.fragment_container)
+        val fragmentContainer: View? = findViewById(R.id.fragment_container)
         if (fragmentContainer != null) {
             val details = RecipeDetailFragment()
             val ft = supportFragmentManager.beginTransaction()
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(), Listener {
             ft.commit()
         } else {
             val intent = Intent(this, DetailsActivity::class.java)
-            intent.putExtra(DetailsActivity.EXTRA_RECIPE_ID, id.toInt())
+            intent.putExtra(DetailsActivity.EXTRA_RECIPE_ID, id)
             startActivity(intent)
         }
     }

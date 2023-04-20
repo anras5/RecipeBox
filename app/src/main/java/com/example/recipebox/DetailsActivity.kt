@@ -9,8 +9,10 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
         val frag: RecipeDetailFragment = supportFragmentManager.findFragmentById(R.id.detail_frag) as RecipeDetailFragment
-        val recipeId = intent.extras?.get(EXTRA_RECIPE_ID)
-        frag.setRecipe(recipeId as Long)
+        val recipeId = intent.extras?.getLong(EXTRA_RECIPE_ID)
+        if (recipeId != null) {
+            frag.setRecipe(recipeId)
+        }
     }
 
     companion object {
