@@ -50,6 +50,9 @@ class RecipeDetailFragment : Fragment() {
             description.text = cocktail.recipe
             val preparationTime: TextView = view.findViewById(R.id.textPreparationTime)
             preparationTime.text = "Preparation time: ${cocktail.minutes} minutes"
+
+            val frag: TimerFragment = childFragmentManager.findFragmentById(R.id.timer_container) as TimerFragment
+            frag.setPreparaionSeconds(cocktail.minutes)
         }
     }
 

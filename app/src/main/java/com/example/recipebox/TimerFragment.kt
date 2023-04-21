@@ -12,17 +12,26 @@ import java.util.Locale
 
 class TimerFragment : Fragment(), View.OnClickListener{
 
-    private var seconds = 300
+    private var preparationSeconds = 0
+    private var seconds = 0
     private var running = false
     private var wasRunning = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        arguments?.let {
+            seconds = it.getString("preparationTime")!!.toInt() * 60
+            preparationSeconds = seconds
+        }
+
         savedInstanceState?.let {
+            preparationSeconds = it.getInt("preparationSeconds")
             seconds = it.getInt("seconds")
             running = it.getBoolean("running")
             wasRunning = it.getBoolean("wasRunning")
         }
+
     }
 
     override fun onCreateView(
@@ -55,6 +64,7 @@ class TimerFragment : Fragment(), View.OnClickListener{
 
     override fun onSaveInstanceState(savedInstanceState: Bundle) {
         super.onSaveInstanceState(savedInstanceState)
+        savedInstanceState.putInt("preparationSeconds", preparationSeconds)
         savedInstanceState.putInt("seconds", seconds)
         savedInstanceState.putBoolean("running", running)
         savedInstanceState.putBoolean("wasRunning", wasRunning)
@@ -78,7 +88,14 @@ class TimerFragment : Fragment(), View.OnClickListener{
 
     private fun onClickReset() {
         running = false
-        seconds = 300
+        seconds = preparationSeconds
+    }
+
+    fun setPreparaionSeconds(time: Int) {
+        if (preparationSeconds == 0) {
+            this.preparationSeconds = time * 60
+            this.seconds = time * 60
+        }
     }
 
     private fun runTimer(view: View) {
