@@ -40,7 +40,7 @@ class Recipe(name: String, recipe: String, minutes: Int) {
                         "Push the rice and vegetables to the side of the pan and scramble an egg in the empty space.\n" +
                         "Mix the egg into the rice and vegetables.\n" +
                         "Season with soy sauce and serve.",
-                15
+                5
             ),
             Recipe(
                 "Grilled Cheese Sandwich",

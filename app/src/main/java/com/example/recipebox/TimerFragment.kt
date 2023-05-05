@@ -1,7 +1,11 @@
 package com.example.recipebox
 
+import android.content.ContentValues.TAG
+import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +20,7 @@ class TimerFragment : Fragment(), View.OnClickListener{
     private var seconds = 0
     private var running = false
     private var wasRunning = false
+    private lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +37,17 @@ class TimerFragment : Fragment(), View.OnClickListener{
             wasRunning = it.getBoolean("wasRunning")
         }
 
+//        mediaPlayer = MediaPlayer.create(activity, R.raw.alarm_sound)
+        mediaPlayer = MediaPlayer()
+        val resId = R.raw.alarm_sound
+        val fileDescriptor = resources.openRawResourceFd(resId)
+        mediaPlayer.setDataSource(fileDescriptor.fileDescriptor, fileDescriptor.startOffset, fileDescriptor.length)
+        fileDescriptor.close()
+        mediaPlayer.prepare()
+
+
+
+
     }
 
     override fun onCreateView(
@@ -45,6 +61,14 @@ class TimerFragment : Fragment(), View.OnClickListener{
         stopButton.setOnClickListener(this)
         val resetButton: Button = layout.findViewById(R.id.reset_button)
         resetButton.setOnClickListener(this)
+        val minusMinuteButton: Button = layout.findViewById(R.id.minusMinuteButton)
+        minusMinuteButton.setOnClickListener(this)
+        val minusSecondButton: Button = layout.findViewById(R.id.minusSecondButton)
+        minusSecondButton.setOnClickListener(this)
+        val plusSecondButton: Button = layout.findViewById(R.id.plusSecondButton)
+        plusSecondButton.setOnClickListener(this)
+        val plusMinuteButton: Button = layout.findViewById(R.id.plusMinuteButton)
+        plusMinuteButton.setOnClickListener(this)
         return layout
     }
 
@@ -71,15 +95,33 @@ class TimerFragment : Fragment(), View.OnClickListener{
     }
 
     override fun onClick(view: View) {
+        if (mediaPlayer.isPlaying) {
+            // Stopping the alarm sound
+            mediaPlayer.stop()
+            mediaPlayer.reset()
+            mediaPlayer.release()
+            mediaPlayer = MediaPlayer()
+            val resId = R.raw.alarm_sound
+            val fileDescriptor = resources.openRawResourceFd(resId)
+            mediaPlayer.setDataSource(fileDescriptor.fileDescriptor, fileDescriptor.startOffset, fileDescriptor.length)
+            fileDescriptor.close()
+            mediaPlayer.prepare()
+        }
+
         when (view.id) {
             R.id.start_button -> onClickStart()
             R.id.stop_button -> onClickStop()
             R.id.reset_button -> onClickReset()
+            R.id.minusMinuteButton -> onClickMinusMinute()
+            R.id.minusSecondButton -> onClickMinusSecond()
+            R.id.plusSecondButton -> onClickPlusSecond()
+            R.id.plusMinuteButton -> onClickPlusMinute()
         }
     }
 
     private fun onClickStart() {
-        running = true
+        if (seconds > 0)
+            running = true
     }
 
     private fun onClickStop() {
@@ -89,6 +131,24 @@ class TimerFragment : Fragment(), View.OnClickListener{
     private fun onClickReset() {
         running = false
         seconds = preparationSeconds
+    }
+
+    private fun onClickMinusMinute() {
+        if (seconds >= 60)
+            seconds -= 60
+    }
+
+    private fun onClickMinusSecond() {
+        if (seconds > 0)
+            seconds -= 1
+    }
+
+    private fun onClickPlusSecond() {
+        seconds += 1
+    }
+
+    private fun onClickPlusMinute() {
+        seconds += 60
     }
 
     fun setPreparaionSeconds(time: Int) {
@@ -110,6 +170,11 @@ class TimerFragment : Fragment(), View.OnClickListener{
                 timeView.text = time
                 if (running) {
                     seconds--
+                }
+                if (seconds == 0) {
+                    // Starting the alarm sound
+                    mediaPlayer.start()
+                    running = false
                 }
                 handler.postDelayed(this, 1000)
             }
