@@ -44,15 +44,15 @@ class RecipeDetailFragment : Fragment() {
         val view: View? = view
         if (view != null) {
             val title: TextView = view.findViewById(R.id.textTitle)
-            val cocktail: Recipe = Recipe.recipes[recipeId.toInt()]
-            title.text = cocktail.name
+            val recipe: Recipe = Recipe.recipes[recipeId.toInt()]
+            title.text = recipe.name
             val description: TextView = view.findViewById(R.id.textDescription)
-            description.text = cocktail.recipe
+            description.text = recipe.recipe
             val preparationTime: TextView = view.findViewById(R.id.textPreparationTime)
-            preparationTime.text = "Preparation time: ${cocktail.minutes} minutes"
+            preparationTime.text = "Preparation time: ${recipe.minutes} minutes"
 
             val frag: TimerFragment = childFragmentManager.findFragmentById(R.id.timer_container) as TimerFragment
-            frag.setPreparaionSeconds(cocktail.minutes)
+            frag.setPreparaionSeconds(recipe.minutes)
         }
     }
 

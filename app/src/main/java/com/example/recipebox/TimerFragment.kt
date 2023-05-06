@@ -37,16 +37,12 @@ class TimerFragment : Fragment(), View.OnClickListener{
             wasRunning = it.getBoolean("wasRunning")
         }
 
-//        mediaPlayer = MediaPlayer.create(activity, R.raw.alarm_sound)
         mediaPlayer = MediaPlayer()
         val resId = R.raw.alarm_sound
         val fileDescriptor = resources.openRawResourceFd(resId)
         mediaPlayer.setDataSource(fileDescriptor.fileDescriptor, fileDescriptor.startOffset, fileDescriptor.length)
         fileDescriptor.close()
         mediaPlayer.prepare()
-
-
-
 
     }
 
