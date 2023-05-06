@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.FragmentTransaction
 
 
 class RecipeDetailFragment : Fragment() {
@@ -24,6 +25,13 @@ class RecipeDetailFragment : Fragment() {
         super.onCreate(savedInstanceState)
         if(savedInstanceState != null) {
             recipeId = savedInstanceState.getLong("recipeId")
+        } else {
+            val timer = TimerFragment()
+            val ft = childFragmentManager.beginTransaction()
+            ft.add(R.id.timer_container, timer)
+            ft.addToBackStack(null)
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            ft.commit()
         }
     }
 
@@ -36,10 +44,15 @@ class RecipeDetailFragment : Fragment() {
         val view: View? = view
         if (view != null) {
             val title: TextView = view.findViewById(R.id.textTitle)
-            val cocktail: Recipe = Recipe.recipes[recipeId.toInt()]
-            title.text = cocktail.name
+            val recipe: Recipe = Recipe.recipes[recipeId.toInt()]
+            title.text = recipe.name
             val description: TextView = view.findViewById(R.id.textDescription)
-            description.text = cocktail.recipe
+            description.text = recipe.recipe
+            val preparationTime: TextView = view.findViewById(R.id.textPreparationTime)
+            preparationTime.text = "Preparation time: ${recipe.minutes} minutes"
+
+            val frag: TimerFragment = childFragmentManager.findFragmentById(R.id.timer_container) as TimerFragment
+            frag.setPreparaionSeconds(recipe.minutes)
         }
     }
 
