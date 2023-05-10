@@ -2,6 +2,8 @@ package com.example.recipebox
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.widget.Toolbar
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -13,6 +15,9 @@ class DetailsActivity : AppCompatActivity() {
         if (recipeId != null) {
             frag.setRecipe(recipeId)
         }
+
+        val toolbar: Toolbar = findViewById<View>(R.id.toolbar) as Toolbar
+        setSupportActionBar(toolbar)
     }
 
     companion object {
