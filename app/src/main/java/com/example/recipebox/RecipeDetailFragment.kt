@@ -1,12 +1,15 @@
 package com.example.recipebox
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 
 
 class RecipeDetailFragment : Fragment() {
@@ -23,7 +26,7 @@ class RecipeDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             recipeId = savedInstanceState.getLong("recipeId")
         } else {
             val timer = TimerFragment()
@@ -46,17 +49,36 @@ class RecipeDetailFragment : Fragment() {
             val title: TextView = view.findViewById(R.id.textTitle)
             val recipe: Recipe = Recipe.recipes[recipeId.toInt()]
             title.text = recipe.name
+
             val description: TextView = view.findViewById(R.id.textDescription)
             description.text = recipe.recipe
+
             val preparationTime: TextView = view.findViewById(R.id.textPreparationTime)
             preparationTime.text = "Preparation time: ${recipe.minutes} minutes"
 
-            val frag: TimerFragment = childFragmentManager.findFragmentById(R.id.timer_container) as TimerFragment
+            val frag: TimerFragment =
+                childFragmentManager.findFragmentById(R.id.timer_container) as TimerFragment
             frag.setPreparaionSeconds(recipe.minutes)
+
+            val fab: FloatingActionButton = view.findViewById(R.id.fab)
+            fab.setOnClickListener { onClickDone(view) }
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putLong("recipeId", recipeId)
     }
+
+    fun onClickDone(view: View) {
+        val text: CharSequence = "To jest prosty pasek snackbar."
+        val duration = Snackbar.LENGTH_SHORT
+        val snackbar = Snackbar.make(view, text, duration)
+        snackbar.setAction("Cofnij") {
+            val toast = Toast.makeText(context, "Cofnięto!", Toast.LENGTH_SHORT)
+            toast.show()
+        }
+        snackbar.show()
+    }
+
+
 }
