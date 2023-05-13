@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -38,8 +39,10 @@ class RecipeDetailFragment : Fragment() {
         }
     }
 
-    fun setRecipe(id: Long) {
-        this.recipeId = id
+    fun setRecipe(id: Long?) {
+        if (id != null) {
+            this.recipeId = id
+        }
     }
 
     override fun onStart() {
@@ -62,6 +65,9 @@ class RecipeDetailFragment : Fragment() {
 
             val fab: FloatingActionButton = view.findViewById(R.id.fab)
             fab.setOnClickListener { onClickDone(view) }
+
+            val imageView: ImageView = view.findViewById<ImageView>(R.id.image)
+            imageView.setImageResource(recipe.imageId)
         }
     }
 
