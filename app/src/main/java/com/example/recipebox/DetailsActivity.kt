@@ -1,7 +1,10 @@
 package com.example.recipebox
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 
 class DetailsActivity : AppCompatActivity() {
 
@@ -13,6 +16,11 @@ class DetailsActivity : AppCompatActivity() {
         if (recipeId != null) {
             frag.setRecipe(recipeId)
         }
+
+        val toolbar: Toolbar = findViewById<View>(R.id.toolbar) as Toolbar
+        setSupportActionBar(toolbar)
+        val actionBar: ActionBar? = supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     companion object {
