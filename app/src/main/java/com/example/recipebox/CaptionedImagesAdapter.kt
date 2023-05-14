@@ -10,13 +10,17 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
-class CaptionedImagesAdapter(private var captions: Array<String>, private var imageIds: IntArray) :
+class CaptionedImagesAdapter(
+    private var captions: Array<String>,
+    private var imageIds: IntArray,
+    private var recipes: Array<Recipe>
+) :
     RecyclerView.Adapter<CaptionedImagesAdapter.ViewHolder>() {
 
     private var listener: Listener? = null
 
     interface Listener {
-        fun onClick(position: Int)
+        fun onClick(recipe: Recipe)
     }
 
     fun setListener(listener: Listener) {
@@ -43,7 +47,7 @@ class CaptionedImagesAdapter(private var captions: Array<String>, private var im
         textView.text = captions[position]
 
         cardView.setOnClickListener {
-            listener?.onClick(position)
+            listener?.onClick(recipes[position])
         }
     }
 

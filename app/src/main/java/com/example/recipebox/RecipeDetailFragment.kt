@@ -21,7 +21,6 @@ class RecipeDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_recipe_detail, container, false)
     }
 
@@ -49,25 +48,32 @@ class RecipeDetailFragment : Fragment() {
         super.onStart()
         val view: View? = view
         if (view != null) {
+            println("Hello")
             val title: TextView = view.findViewById(R.id.textTitle)
-            val recipe: Recipe = Recipe.recipes[recipeId.toInt()]
-            title.text = recipe.name
+            val dbHandler = DBHandler(requireContext(),null, null, 1)
+            println(recipeId.toInt())
+            val recipe: Recipe? = dbHandler.findRecipe(recipeId.toInt())
+            if (recipe != null) {
+                println(recipe.id)
+                title.text = recipe.name
+                val description: TextView = view.findViewById(R.id.textDescription)
+                description.text = recipe.actions
 
-            val description: TextView = view.findViewById(R.id.textDescription)
-            description.text = recipe.recipe
+                val preparationTime: TextView = view.findViewById(R.id.textPreparationTime)
+                preparationTime.text = "Preparation time: ${recipe.minutes} minutes"
 
-            val preparationTime: TextView = view.findViewById(R.id.textPreparationTime)
-            preparationTime.text = "Preparation time: ${recipe.minutes} minutes"
+                val frag: TimerFragment =
+                    childFragmentManager.findFragmentById(R.id.timer_container) as TimerFragment
+                frag.setPreparaionSeconds(recipe.minutes)
 
-            val frag: TimerFragment =
-                childFragmentManager.findFragmentById(R.id.timer_container) as TimerFragment
-            frag.setPreparaionSeconds(recipe.minutes)
+                val fab: FloatingActionButton = view.findViewById(R.id.fab)
+                fab.setOnClickListener { onClickDone(view) }
 
-            val fab: FloatingActionButton = view.findViewById(R.id.fab)
-            fab.setOnClickListener { onClickDone(view) }
-
-            val imageView: ImageView = view.findViewById<ImageView>(R.id.image)
-            imageView.setImageResource(recipe.imageId)
+                val imageView: ImageView = view.findViewById<ImageView>(R.id.image)
+                imageView.setImageResource(recipe.imageId)
+            } else {
+                println("no sorki")
+            }
         }
     }
 
