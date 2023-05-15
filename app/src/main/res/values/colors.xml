@@ -16,4 +16,13 @@
     <color name="sunset_sky">#ec8100</color>
     <color name="night_sky">#05192e</color>
     <color name="sea">#224869</color>
+
+    <color name="burger_plate">#E0EEEC</color>
+    <color name="burger_bread_inside">#EDBC92</color>
+    <color name="burger_meat">#995719</color>
+    <color name="burger_cheese">#FDC134</color>
+    <color name="burger_pickle">#3CAC36</color>
+    <color name="burger_bread_outside">#E5A165</color>
+    <color name="burger_sesame">#E6C35C</color>
+
 </resources>
