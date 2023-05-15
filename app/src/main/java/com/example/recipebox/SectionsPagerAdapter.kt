@@ -27,8 +27,8 @@ class SectionsPagerAdapter(
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
             0 -> context.resources.getText(R.string.home_tab)
-            1 -> context.resources.getText(R.string.kat1_tab)
-            2 -> context.resources.getText(R.string.kat2_tab)
+            1 -> context.resources.getText(R.string.tab1)
+            2 -> context.resources.getText(R.string.tab2)
             else -> null
         }
     }
