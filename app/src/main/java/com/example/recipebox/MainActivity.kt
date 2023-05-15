@@ -3,11 +3,13 @@ package com.example.recipebox
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import java.io.File
 
 
 class MainActivity : AppCompatActivity(), Listener {
@@ -23,6 +25,16 @@ class MainActivity : AppCompatActivity(), Listener {
 
         val tabLayout = findViewById<View>(R.id.tabs) as TabLayout
         tabLayout.setupWithViewPager(pager)
+
+        // Generating Database (comment if not needed)
+        var file = File("/data/data/com.example.recipebox/databases/recipeDB.db")
+        file.delete()
+        file = File("/data/data/com.example.recipebox/databases/recipeDB.db-journal")
+        file.delete()
+        val dbHandler = DBHandler(this,null, null, 1)
+        for (recipe in Recipe.recipes) {
+            dbHandler.addRecipe(recipe)
+        }
     }
 
     override fun itemClicked(id: Long) {
