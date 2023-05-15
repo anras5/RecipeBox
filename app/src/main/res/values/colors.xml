@@ -10,4 +10,10 @@
     <color name="colorPrimary">#E0C1B3</color>
     <color name="colorPrimaryDark">#AEB4A9</color>
     <color name="colorAccent">#D89A9E</color>
+
+    <color name="bright_sun">#fcfcb7</color>
+    <color name="blue_sky">#1e7ac7</color>
+    <color name="sunset_sky">#ec8100</color>
+    <color name="night_sky">#05192e</color>
+    <color name="sea">#224869</color>
 </resources>
