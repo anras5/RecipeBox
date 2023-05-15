@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -17,64 +16,95 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/start_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/start" />
+            android:layout_marginStart="8dp"
+            android:src="@drawable/play"
+            android:contentDescription="@string/play"
+            android:paddingHorizontal="27dp"
+            android:paddingVertical="13dp"
+            />
 
-        <Button
+
+        <ImageButton
             android:id="@+id/stop_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:text="@string/stop" />
+            android:layout_marginStart="8dp"
+            android:src="@drawable/pause"
+            android:contentDescription="@string/pause"
+            android:paddingHorizontal="27dp"
+            android:paddingVertical="13dp"
+            />
 
-        <Button
+        <ImageButton
             android:id="@+id/reset_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:text="@string/reset" />
+            android:layout_marginStart="8dp"
+            android:src="@drawable/restart"
+            android:contentDescription="@string/restart"
+            android:paddingHorizontal="27dp"
+            android:paddingVertical="13dp"
+            />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
 
-        <Button
+        <ImageButton
             android:id="@+id/minusMinuteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:text="--" />
+            android:layout_marginStart="8dp"
+            android:src="@drawable/minus"
+            android:contentDescription="@string/minus"
+            android:paddingHorizontal="27dp"
+            android:paddingVertical="13dp"
+            />
 
-        <Button
+        <ImageButton
             android:id="@+id/minusSecondButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:text="-" />
+            android:layout_marginStart="8dp"
+            android:src="@drawable/minus_thin"
+            android:contentDescription="@string/minus_second"
+            android:paddingHorizontal="27dp"
+            android:paddingVertical="13dp"
+            />
 
-        <Button
+        <ImageButton
             android:id="@+id/plusSecondButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:text="+" />
+            android:layout_marginStart="8dp"
+            android:src="@drawable/plus_thin"
+            android:contentDescription="@string/plus_second"
+            android:paddingHorizontal="27dp"
+            android:paddingVertical="13dp"
+            />
 
-        <Button
+        <ImageButton
             android:id="@+id/plusMinuteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:text="++" />
+            android:layout_marginStart="8dp"
+            android:src="@drawable/plus"
+            android:contentDescription="@string/plus_minute"
+            android:paddingHorizontal="27dp"
+            android:paddingVertical="13dp"
+            />
 
     </LinearLayout>
 </LinearLayout>

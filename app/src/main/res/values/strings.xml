@@ -25,4 +25,11 @@
     <string name="tick_tock">Tick Tock...</string>
     <string name="cheat_day">Cheat Day?</string>
     <string name="everyone_deserves_a_moment_of_pleasure_from_time_to_time_recipebox_will_not_judge_you">Everyone deserves a moment of pleasure from time to time. RecipeBox will not judge you.</string>
+    <string name="play">Play</string>
+    <string name="pause">Pause</string>
+    <string name="restart">Restart</string>
+    <string name="minus">Minus</string>
+    <string name="minus_second">Minus second</string>
+    <string name="plus_second">Plus second</string>
+    <string name="plus_minute">Plus minute</string>
 </resources>

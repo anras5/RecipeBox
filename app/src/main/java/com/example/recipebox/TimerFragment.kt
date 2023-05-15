@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import java.util.Locale
@@ -51,19 +52,19 @@ class TimerFragment : Fragment(), View.OnClickListener{
     ): View? {
         val layout = inflater.inflate(R.layout.fragment_timer, container, false)
         runTimer(layout)
-        val startButton: Button = layout.findViewById(R.id.start_button)
+        val startButton: ImageButton = layout.findViewById(R.id.start_button)
         startButton.setOnClickListener(this)
-        val stopButton: Button = layout.findViewById(R.id.stop_button)
+        val stopButton: ImageButton = layout.findViewById(R.id.stop_button)
         stopButton.setOnClickListener(this)
-        val resetButton: Button = layout.findViewById(R.id.reset_button)
+        val resetButton: ImageButton = layout.findViewById(R.id.reset_button)
         resetButton.setOnClickListener(this)
-        val minusMinuteButton: Button = layout.findViewById(R.id.minusMinuteButton)
+        val minusMinuteButton: ImageButton = layout.findViewById(R.id.minusMinuteButton)
         minusMinuteButton.setOnClickListener(this)
-        val minusSecondButton: Button = layout.findViewById(R.id.minusSecondButton)
+        val minusSecondButton: ImageButton = layout.findViewById(R.id.minusSecondButton)
         minusSecondButton.setOnClickListener(this)
-        val plusSecondButton: Button = layout.findViewById(R.id.plusSecondButton)
+        val plusSecondButton: ImageButton = layout.findViewById(R.id.plusSecondButton)
         plusSecondButton.setOnClickListener(this)
-        val plusMinuteButton: Button = layout.findViewById(R.id.plusMinuteButton)
+        val plusMinuteButton: ImageButton = layout.findViewById(R.id.plusMinuteButton)
         plusMinuteButton.setOnClickListener(this)
         return layout
     }
