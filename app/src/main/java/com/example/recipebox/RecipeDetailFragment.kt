@@ -50,10 +50,8 @@ class RecipeDetailFragment : Fragment() {
         super.onStart()
         val view: View? = view
         if (view != null) {
-            println("Hello")
             val title: TextView = view.findViewById(R.id.textTitle)
             val dbHandler = DBHandler(requireContext(),null, null, 1)
-            println(recipeId.toInt())
             val recipe: Recipe? = dbHandler.findRecipe(recipeId.toInt())
             if (recipe != null) {
                 title.text = recipe.name
